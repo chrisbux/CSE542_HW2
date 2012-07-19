@@ -17,6 +17,13 @@ public class ATMEndSession extends TestCase {
 		atm.chooseWithdrawMoney();
 		atm.enterAmount(150.00);
 		assertEquals(150.00, atm.receiveFunds());
+
+		// test overdrawing account
+		atm.chooseWithdrawMoney();
+		atm.enterAmount(150.00);
+		assertEquals(0.0, atm.receiveFunds());
+
+		// remove card
 		atm.chooseNone();
 		assertTrue(atm.removeATMCard());
 	}
